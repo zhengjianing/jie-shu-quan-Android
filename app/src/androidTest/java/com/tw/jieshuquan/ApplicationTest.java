@@ -1,4 +1,4 @@
-package com.tw.com.jieshuquan;
+package com.tw.jieshuquan;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
