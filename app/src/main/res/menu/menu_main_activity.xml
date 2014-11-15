@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.tw.jieshuquan.MainActivity">
+    tools:context="com.tw.jieshuquan.ui.activity.MainActivity">
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/sel_tab_search"
