@@ -29,22 +29,20 @@ public class TabBar extends LinearLayout {
     private void init(AttributeSet attrs, int defStyle) {
         inflate(getContext(), R.layout.view_tab_bar, this);
 
-        if (!isInEditMode()) {
-            int tabCount = getChildCount();
-            for (int i = 0; i < tabCount; i++) {
-                final int position = i;
-                View tab = getChildAt(i);
-                tab.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        unselectAll();
-                        v.setSelected(true);
-                        if (mOnTabClickListener != null) {
-                            mOnTabClickListener.onTabClick(v, position);
-                        }
+        int tabCount = getChildCount();
+        for (int i = 0; i < tabCount; i++) {
+            final int position = i;
+            View tab = getChildAt(i);
+            tab.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    unselectAll();
+                    v.setSelected(true);
+                    if (mOnTabClickListener != null) {
+                        mOnTabClickListener.onTabClick(v, position);
                     }
-                });
-            }
+                }
+            });
         }
     }
 

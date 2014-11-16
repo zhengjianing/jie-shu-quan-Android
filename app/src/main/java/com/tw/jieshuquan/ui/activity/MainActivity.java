@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.tw.jieshuquan.R;
 import com.tw.jieshuquan.ui.fragment.DummyFragment;
+import com.tw.jieshuquan.ui.fragment.LoginRequiredFragment;
 import com.tw.jieshuquan.ui.view.TabBar;
 
 
@@ -36,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
         mTabBar.setOnTabClickListener(new TabBar.OnTabClickListener() {
             @Override
             public void onTabClick(View tabView, int position) {
-                mViewPager.setCurrentItem(position);
+                mViewPager.setCurrentItem(position, false);
             }
         });
         mTabBar.setCurrentItem(0);
@@ -66,14 +67,29 @@ public class MainActivity extends ActionBarActivity {
 
     public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
+        private static final int PAGE_SEARCH = 0;
+        private static final int PAGE_BOOKS = 1;
+        private static final int PAGE_PEOPLE = 2;
+        private static final int PAGE_MORE = 3;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            return DummyFragment.newInstance(position);
-
+            switch (position) {
+                case PAGE_SEARCH:
+                    return DummyFragment.newInstance();
+                case PAGE_BOOKS:
+                    return LoginRequiredFragment.newInstance();
+                case PAGE_PEOPLE:
+                    return LoginRequiredFragment.newInstance();
+                case PAGE_MORE:
+                    return DummyFragment.newInstance();
+                default:
+                    return DummyFragment.newInstance();
+            }
         }
 
         @Override
