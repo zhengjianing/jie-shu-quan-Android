@@ -2,15 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.tw.jieshuquan.ui.activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="?attr/colorPrimaryDark"
+        android:background="?attr/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
 
     <com.tw.jieshuquan.ui.view.TabBar
         android:id="@+id/tab_bar"
@@ -18,14 +20,21 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true" />
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/tab_bar"
+        android:background="@color/divider"
+        android:paddingBottom="3dp" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tab_bar"
+        android:layout_above="@id/divider"
         android:layout_below="@id/toolbar"
-        android:clickable="false"
-        tools:context="com.tw.com.jieshuquan.MainActivity2" />
+        android:clickable="false" />
 
 </RelativeLayout>
 

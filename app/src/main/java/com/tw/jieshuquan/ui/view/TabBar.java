@@ -3,15 +3,13 @@ package com.tw.jieshuquan.ui.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.tw.jieshuquan.R;
 
-public class TabBar extends RelativeLayout {
+public class TabBar extends LinearLayout {
 
-    private ViewGroup tabGroup;
-    private OnTabClickListener listener;
+    private OnTabClickListener mOnTabClickListener;
 
     public TabBar(Context context) {
         super(context);
@@ -30,42 +28,43 @@ public class TabBar extends RelativeLayout {
 
     private void init(AttributeSet attrs, int defStyle) {
         inflate(getContext(), R.layout.view_tab_bar, this);
-        tabGroup = (ViewGroup) findViewById(R.id.tab_group);
 
-        int tabCount = tabGroup.getChildCount();
-        for (int i = 0; i < tabCount; i++) {
-            final int position = i;
-            View tab = tabGroup.getChildAt(i);
-            tab.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    unselectAll();
-                    v.setSelected(true);
-                    if (listener != null) {
-                        listener.onTabClick(v, position);
+        if (!isInEditMode()) {
+            int tabCount = getChildCount();
+            for (int i = 0; i < tabCount; i++) {
+                final int position = i;
+                View tab = getChildAt(i);
+                tab.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        unselectAll();
+                        v.setSelected(true);
+                        if (mOnTabClickListener != null) {
+                            mOnTabClickListener.onTabClick(v, position);
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 
     public void setCurrentItem(final int position) {
-        if (position >= 0 && position < tabGroup.getChildCount()) {
+        if (position >= 0 && position < getChildCount()) {
             unselectAll();
-            tabGroup.getChildAt(position).setSelected(true);
+            getChildAt(position).setSelected(true);
         }
     }
 
     private void unselectAll() {
-        int tabCount = tabGroup.getChildCount();
+        int tabCount = getChildCount();
         for (int i = 0; i < tabCount; i++) {
-            View tab = tabGroup.getChildAt(i);
+            View tab = getChildAt(i);
             tab.setSelected(false);
         }
     }
 
     public void setOnTabClickListener(OnTabClickListener listener) {
-        this.listener = listener;
+        this.mOnTabClickListener = listener;
     }
 
     public interface OnTabClickListener {

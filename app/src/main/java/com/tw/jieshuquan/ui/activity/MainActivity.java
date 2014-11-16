@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.tw.jieshuquan.R;
@@ -16,8 +15,6 @@ import com.tw.jieshuquan.ui.view.TabBar;
 
 
 public class MainActivity extends ActionBarActivity {
-
-    protected static final String TAG = "MainActivity";
     public static final int NUM_ITEMS = 4;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
@@ -53,16 +50,17 @@ public class MainActivity extends ActionBarActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
             @Override
             public void onPageSelected(int position) {
-                Log.d(TAG, String.format("getItem %d", position));
                 mTabBar.setCurrentItem(position);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
     }
 
