@@ -1,15 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/dark_green</item>
+    <style name="AppTheme" parent="AppTheme.Base" />
 
-        <!-- Customize your theme here.
-
-        <item name="actionBarStyle">@style/MyActionBarStyle</item>
-
-        <item name="colorPrimaryDark">@color/my_awesome_darker_red</item> -->
-
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
     </style>
 
 </resources>
