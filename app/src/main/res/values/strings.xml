@@ -10,5 +10,9 @@
     <string name="title_section4">Section 4</string>
     <string name="title_activity_main_activity3">MainActivity3</string>
     <string name="coming_soon">Coming Soon…</string>
+    <string name="tab_search">搜索</string>
+    <string name="tab_books">我的书库</string>
+    <string name="tab_people">同事们</string>
+    <string name="tab_more">更多</string>
 
 </resources>

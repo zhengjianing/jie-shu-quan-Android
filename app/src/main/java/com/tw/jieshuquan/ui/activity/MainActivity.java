@@ -3,27 +3,27 @@ package com.tw.jieshuquan.ui.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 
 import com.tw.jieshuquan.R;
 import com.tw.jieshuquan.ui.fragment.DummyFragment;
+import com.tw.jieshuquan.ui.view.TabBar;
 
-import java.util.Locale;
 
+public class MainActivity extends ActionBarActivity {
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+    protected static final String TAG = "MainActivity";
+    public static final int NUM_ITEMS = 4;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     ViewPager mViewPager;
+    TabBar mTabBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             setSupportActionBar(toolbar);
         }
 
+        mTabBar = (TabBar) findViewById(R.id.tab_bar);
+        mTabBar.setOnTabClickListener(new TabBar.OnTabClickListener() {
+            @Override
+            public void onTabClick(View tabView, int position) {
+                mViewPager.setCurrentItem(position);
+            }
+        });
+        mTabBar.setCurrentItem(0);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -42,28 +51,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d(TAG, String.format("getItem %d", position));
+                mTabBar.setCurrentItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        mViewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
-    }
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -71,28 +74,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         @Override
         public Fragment getItem(int position) {
-            return DummyFragment.newInstance(position + 1);
+            return DummyFragment.newInstance(position);
+
         }
 
         @Override
         public int getCount() {
-            return 1;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
-                case 3:
-                    return getString(R.string.title_section4).toUpperCase(l);
-            }
-            return null;
+            return NUM_ITEMS;
         }
     }
 }

@@ -12,12 +12,20 @@
         android:background="?attr/colorPrimaryDark"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+    <com.tw.jieshuquan.ui.view.TabBar
+        android:id="@+id/tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/tab_bar"
         android:layout_below="@id/toolbar"
         android:clickable="false"
         tools:context="com.tw.com.jieshuquan.MainActivity2" />
+
 </RelativeLayout>
 
