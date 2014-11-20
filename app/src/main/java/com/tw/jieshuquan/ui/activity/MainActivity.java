@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.tw.jieshuquan.R;
@@ -15,7 +13,7 @@ import com.tw.jieshuquan.ui.fragment.LoginRequiredFragment;
 import com.tw.jieshuquan.ui.view.TabBar;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
     public static final int NUM_ITEMS = 4;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
@@ -27,11 +25,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
 
         mTabBar = (TabBar) findViewById(R.id.tab_bar);
         mTabBar.setOnTabClickListener(new TabBar.OnTabClickListener() {

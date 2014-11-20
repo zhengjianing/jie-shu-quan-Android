@@ -1,14 +1,15 @@
 package com.tw.jieshuquan.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.widget.Toast;
 
 import com.tw.jieshuquan.R;
+import com.tw.jieshuquan.ui.activity.AuthenticationActivity;
 
 public class LoginRequiredFragment extends Fragment {
 
@@ -25,11 +26,12 @@ public class LoginRequiredFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_dummy, container, false);
 
         if (!isLoggedIn()) {
-            View unauthorizedView = ((ViewStub) rootView.findViewById(R.id.unauthorized_view)).inflate();
-            unauthorizedView.findViewById(R.id.login_or_register).setOnClickListener(new View.OnClickListener() {
+            final View unauthorizedView = ((ViewStub) rootView.findViewById(R.id.unauthorized_view)).inflate();
+            final View loginOrRegister = unauthorizedView.findViewById(R.id.login_or_register);
+            loginOrRegister.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Redirect to Login or Regsiter page", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), AuthenticationActivity.class));
                 }
             });
 
