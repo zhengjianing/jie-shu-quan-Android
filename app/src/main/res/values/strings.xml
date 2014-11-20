@@ -8,7 +8,7 @@
     <string name="tab_people">同事们</string>
     <string name="tab_more">更多</string>
     <string name="unauthorized_message">您尚未登录\n\n\n若您没有借书圈账号，推荐使用企业邮箱注册，系统会自动为您找到您的同事们</string>
-    <string name="login_or_register">去登录或注册</string>
+    <string name="login_or_register">登录或注册</string>
 
 
 </resources>
