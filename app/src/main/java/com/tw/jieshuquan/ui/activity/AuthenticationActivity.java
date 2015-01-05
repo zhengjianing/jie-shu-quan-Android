@@ -19,4 +19,10 @@ public class AuthenticationActivity extends BaseActivity {
                     .commit();
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setDisplayHomeAsUpEnabled(true);
+    }
 }
